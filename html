@@ -1,0 +1,1233 @@
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fun Facts About Countries</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            transition: all 0.3s ease;
+        }
+    
+        body {
+            font-family: 'Lato', sans-serif; /* Clean, professional sans-serif font */
+            background-color: #ebe398; /* Light pastel background */
+            color: #000000;
+            line-height: 1.8;
+            padding: 0;
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+    
+        header {
+            background: linear-gradient(to left, #13212f, #212b34); /* Charcoal and vibrant yellow gradient */
+            color: white;
+            padding: 80px 20px; /* Increased padding for a more spacious look */
+            text-align: center;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+            border-bottom: 4px solid #101820; /* Charcoal border for emphasis */
+        }
+    
+        header h1 {
+            font-size: 4rem; /* Larger font size for prominence */
+            font-weight: 700;
+            letter-spacing: 2px;
+            margin-bottom: 15px;
+            font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+        }
+    
+        header p {
+            font-size: 1.3rem;
+            margin-bottom: 25px;
+            letter-spacing: 0.5px;
+            font-family: 'Lato', sans-serif; /* Clean, sans-serif font for readability */
+        }
+    
+        .search-container {
+            margin-top: 20px;
+        }
+    
+        .search-container input {
+            width: 80%;
+            padding: 12px;
+            font-size: 1rem;
+            border: 2px solid #101820; /* Dark charcoal border */
+            border-radius: 20px;
+            outline: none;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+    
+        .search-container input:focus {
+            border-color: #ffe600; /* Vibrant yellow border on focus */
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+        }
+    .country-facts {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        gap: 30px;
+        padding: 40px 20px;
+        flex: 1;
+    }
+
+    .country {
+        background-color: rgb(253, 255, 236); /* Light background for country cards */
+        border-radius: 12px;
+        box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+        width: calc(33% - 40px);
+        transition: transform 0.4s ease, box-shadow 0.4s ease, filter 0.3s ease-in-out;
+        overflow: hidden;
+        transform-origin: center center;
+    }
+
+    .country:hover {
+        transform: translateY(-12px) scale(1.05);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        filter: brightness(1.1);
+    }
+
+    .flag {
+        width: 100%;
+        height: 220px;
+        object-fit: cover;
+        border-radius: 12px 12px 0 0;
+    }
+    
+        .info {
+            padding: 25px;
+            text-align: center;
+        }
+    
+        .info h2 {
+            font-size: 2rem;
+            color: #101820; /* Charcoal for headings */
+            margin: 15px 0;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+    
+        .info p {
+            font-size: 1.1rem;
+            color: #666;
+            line-height: 1.5;
+        }
+    
+        footer {
+            text-align: center;
+            background-color: #1f262d; /* Dark charcoal footer for consistency */
+            color: white;
+            padding: 20px;
+            position: relative;
+            width: 100%;
+            box-shadow: 0 -6px 16px rgba(0, 0, 0, 0.2);
+            margin-top: 40px;
+        }
+    
+        footer p {
+            font-size: 1.2rem;
+        }
+    
+        /* Responsive design */
+        @media screen and (max-width: 1024px) {
+            .country {
+                width: calc(50% - 40px);
+            }
+        }
+    
+        @media screen and (max-width: 768px) {
+            .country {
+                width: calc(100% - 40px);
+            }
+    
+            header h1 {
+                font-size: 2.5rem;
+            }
+    
+            header p {
+                font-size: 1.1rem;
+            }
+    
+            footer p {
+                font-size: 1.1rem;
+            }
+        }
+    
+        @media screen and (max-width: 480px) {
+            body {
+                padding: 10px;
+            }
+    
+            header {
+                padding: 40px 15px;
+            }
+    
+            .country-facts {
+                gap: 15px;
+                padding: 20px;
+            }
+    
+            .country {
+                width: 100%;
+            }
+    
+            header h1 {
+                font-size: 2rem;
+            }
+    
+            header p {
+                font-size: 1rem;
+            }
+    
+            footer p {
+                font-size: 1rem;
+            }
+        }
+    </style>    
+</head>
+<body>
+    <header>
+        <h1>Fun Facts About Countries</h1>
+        <p>Discover one interesting fact about each country along with their flags!</p>
+        <div class="search-container">
+            <input type="text" id="search-box" placeholder="Search countries...">
+        </div>
+    </header>
+
+    <section class="country-facts" id="country-facts">
+        <!-- Dynamic content will be injected here -->
+    </section>
+
+    <footer>
+        <p>Created by Saksham Loonker (ChatGPT)</p>
+    </footer>
+
+    <script>
+        const countries = [
+  {
+    name: "Afghanistan",
+    flag: "https://flagcdn.com/w320/af.png",
+    fact: "Afghanistan has a rich cultural history, with ancient Buddhist art and architecture, and it was once part of the famous Silk Road trade route."
+  },
+  {
+    name: "Albania",
+    flag: "https://flagcdn.com/w320/al.png",
+    fact: "Albania is home to the UNESCO World Heritage site of Gjirokastër, known as the 'City of Stone', which preserves Ottoman-era architecture."
+  },
+  {
+    name: "Algeria",
+    flag: "https://flagcdn.com/w320/dz.png",
+    fact: "Algeria is home to the Sahara Desert, which covers over 80% of the country's land area, and contains ancient rock art and historical oases."
+  },
+  {
+    name: "Andorra",
+    flag: "https://flagcdn.com/w320/ad.png",
+    fact: "Andorra, nestled in the Pyrenees, has one of the highest life expectancy rates in the world, partly due to its mountainous air and low pollution."
+  },
+  {
+    name: "Angola",
+    flag: "https://flagcdn.com/w320/ao.png",
+    fact: "Angola boasts a vibrant cultural scene with traditional music genres like Semba and Kizomba, which are internationally recognized."
+  },
+  {
+    name: "Antigua and Barbuda",
+    flag: "https://flagcdn.com/w320/ag.png",
+    fact: "Antigua and Barbuda is home to one of the oldest and largest Anglican churches in the Caribbean, St. John's Cathedral, which dates back to 1689."
+  },
+  {
+    name: "Argentina",
+    flag: "https://flagcdn.com/w320/ar.png",
+    fact: "Argentina is the birthplace of tango, one of the most influential dance and music genres worldwide, originating in the working-class neighborhoods of Buenos Aires."
+  },
+  {
+    name: "Armenia",
+    flag: "https://flagcdn.com/w320/am.png",
+    fact: "Armenia is renowned for its ancient churches and monasteries, including the famous Geghard Monastery, which is partially carved into the rock."
+  },
+  {
+    name: "Australia",
+    flag: "https://flagcdn.com/w320/au.png",
+    fact: "Australia is not only home to the Great Barrier Reef, but also the world’s longest fence, the Dingo Fence, stretching over 5,600 kilometers."
+  },
+  {
+    name: "Austria",
+    flag: "https://flagcdn.com/w320/at.png",
+    fact: "Austria is home to Vienna, often regarded as the 'City of Music', where classical composers like Mozart, Beethoven, and Schubert once lived and worked."
+  },
+  {
+    name: "Azerbaijan",
+    flag: "https://flagcdn.com/w320/az.png",
+    fact: "Azerbaijan is famous for its mud volcanoes, which are unique to the country and cover over half of the world's total mud volcanoes."
+  },
+  {
+    name: "Bahamas",
+    flag: "https://flagcdn.com/w320/bs.png",
+    fact: "The Bahamas is home to the Exuma Cays Land and Sea Park, the world’s first marine reserve, established in 1958 to protect marine life."
+  },
+  {
+    name: "Bahrain",
+    flag: "https://flagcdn.com/w320/bh.png",
+    fact: "Bahrain is known for the Bahrain World Trade Center, which features two 50-story towers connected by three sky bridges that generate wind energy through turbines."
+  },
+  {
+    name: "Bangladesh",
+    flag: "https://flagcdn.com/w320/bd.png",
+    fact: "Bangladesh is home to the Sundarbans, the largest mangrove forest in the world, which is a UNESCO World Heritage site and a haven for Bengal tigers."
+  },
+  {
+    name: "Barbados",
+    flag: "https://flagcdn.com/w320/bb.png",
+    fact: "Barbados is famous for its pristine beaches and sugarcane plantations, but it is also the birthplace of Rihanna, the global pop star."
+  },
+  {
+    name: "Belarus",
+    flag: "https://flagcdn.com/w320/by.png",
+    fact: "Belarus is known for its pristine forests, which cover nearly 40% of the country and are home to the European bison, a species once nearly extinct."
+  },
+  {
+    name: "Belgium",
+    flag: "https://flagcdn.com/w320/be.png",
+    fact: "Belgium is the birthplace of surrealism and home to famous artists like René Magritte, whose paintings are displayed worldwide."
+  },
+  {
+    name: "Belize",
+    flag: "https://flagcdn.com/w320/bz.png",
+    fact: "Belize is home to the Great Blue Hole, a massive underwater sinkhole that is a UNESCO World Heritage site and a popular destination for divers."
+  },
+  {
+    name: "Benin",
+    flag: "https://flagcdn.com/w320/bj.png",
+    fact: "Benin is the birthplace of the ancient Kingdom of Dahomey, known for its powerful female warriors, the 'Amazons', who fought alongside men in battle."
+  },
+  {
+    name: "Bhutan",
+    flag: "https://flagcdn.com/w320/bt.png",
+    fact: "Bhutan is famous for being the only country in the world that measures success by Gross National Happiness instead of GDP, focusing on spiritual and environmental well-being."
+  },
+  {
+    name: "Bolivia",
+    flag: "https://flagcdn.com/w320/bo.png",
+    fact: "Bolivia is home to the Salar de Uyuni, the world’s largest salt flat, which creates an incredible mirror effect during the rainy season."
+  },
+  {
+    name: "Bosnia and Herzegovina",
+    flag: "https://flagcdn.com/w320/ba.png",
+    fact: "Bosnia and Herzegovina is home to the iconic Stari Most bridge in Mostar, which was reconstructed after the Bosnian War and is a UNESCO World Heritage site."
+  },
+  {
+    name: "Botswana",
+    flag: "https://flagcdn.com/w320/bw.png",
+    fact: "Botswana is a leader in wildlife conservation and is home to the Okavango Delta, a UNESCO World Heritage site and one of the most biodiverse areas on Earth."
+  },
+  {
+    name: "Brazil",
+    flag: "https://flagcdn.com/w320/br.png",
+    fact: "Brazil is home to the world's largest carnival in Rio de Janeiro, a vibrant and colorful celebration that attracts millions of visitors every year."
+  },
+  {
+    name: "Brunei",
+    flag: "https://flagcdn.com/w320/bn.png",
+    fact: "Brunei is one of the world's richest countries per capita, thanks to its vast oil reserves, and it is known for its luxurious Sultan's palace, Istana Nurul Iman."
+  },
+  {
+    name: "Bulgaria",
+    flag: "https://flagcdn.com/w320/bg.png",
+    fact: "Bulgaria is home to the ancient Thracian tombs, which are UNESCO World Heritage sites, and the traditional Bulgarian rose harvest, celebrated in an annual festival."
+  },
+  {
+    name: "Burkina Faso",
+    flag: "https://flagcdn.com/w320/bf.png",
+    fact: "Burkina Faso is a cultural hub of West Africa, known for its vibrant music scene, including traditional drumming and dance performances."
+  },
+  {
+    name: "Burundi",
+    flag: "https://flagcdn.com/w320/bi.png",
+    fact: "Burundi is known for its breathtaking landscape of rolling hills and lakes, including Lake Tanganyika, the second deepest lake in the world."
+  },
+  {
+    name: "Cabo Verde",
+    flag: "https://flagcdn.com/w320/cv.png",
+    fact: "Cabo Verde is known for its volcanic islands, as well as its Creole music style, morna, which combines African, Portuguese, and Brazilian influences."
+  },
+  {
+    name: "Cambodia",
+    flag: "https://flagcdn.com/w320/kh.png",
+    fact: "Cambodia is home to Angkor Wat, the largest religious monument in the world, and its ancient temple complex is a symbol of the nation's national pride."
+  },
+  {
+    name: "Cameroon",
+    flag: "https://flagcdn.com/w320/cm.png",
+    fact: "Cameroon is known for its incredible biodiversity, including rare animals like the Cross River gorilla and the African forest elephant."
+  },
+  {
+    name: "Canada",
+    flag: "https://flagcdn.com/w320/ca.png",
+    fact: "Canada has the longest coastline of any country, stretching over 202,000 kilometers, and is home to the majestic Niagara Falls."
+  },
+  {
+    name: "Central African Republic",
+    flag: "https://flagcdn.com/w320/cf.png",
+    fact: "The Central African Republic is rich in natural resources, including diamonds, gold, and uranium, though it remains one of the poorest nations."
+  },
+  {
+    name: "Chad",
+    flag: "https://flagcdn.com/w320/td.png",
+    fact: "Chad is home to the Zakouma National Park, which has become a major success story in Africa for its conservation efforts against poaching and protecting elephants."
+  },
+  {
+    name: "Chile",
+    flag: "https://flagcdn.com/w320/cl.png",
+    fact: "Chile is known for its diverse geography, which includes the Andes mountains, the Atacama Desert, and thousands of kilometers of coastline along the Pacific Ocean."
+  },
+  {
+    name: "China",
+    flag: "https://flagcdn.com/w320/cn.png",
+    fact: "China is home to the Great Wall, one of the most impressive structures ever built, stretching over 13,000 miles across the country."
+  },
+  {
+    name: "Colombia",
+    flag: "https://flagcdn.com/w320/co.png",
+    fact: "Colombia is the only country in South America with coastlines on both the Pacific Ocean and the Caribbean Sea."
+  },
+  {
+    name: "Comoros",
+    flag: "https://flagcdn.com/w320/km.png",
+    fact: "Comoros, an island nation in the Indian Ocean, is renowned for its aromatic spices, especially ylang-ylang, used in perfumes worldwide."
+  },
+  {
+    name: "Congo (Republic of the Congo)",
+    flag: "https://flagcdn.com/w320/cg.png",
+    fact: "The Republic of the Congo is home to the Congo River, Africa's second-longest river, and the dense forests of the Congo Basin."
+  },
+  {
+    name: "Congo (Democratic Republic of the Congo)",
+    flag: "https://flagcdn.com/w320/cd.png",
+    fact: "The DRC is one of the most resource-rich countries on Earth, with vast deposits of minerals like cobalt, copper, and diamonds."
+  },
+  {
+    name: "Costa Rica",
+    flag: "https://flagcdn.com/w320/cr.png",
+    fact: "Costa Rica is famous for its environmental conservation efforts, with over 25% of its land protected in national parks and reserves."
+  },
+  {
+    name: "Croatia",
+    flag: "https://flagcdn.com/w320/hr.png",
+    fact: "Croatia boasts a stunning coastline along the Adriatic Sea, with over 1,000 islands and a rich cultural heritage."
+  },
+  {
+    name: "Cuba",
+    flag: "https://flagcdn.com/w320/cu.png",
+    fact: "Cuba is known for its vibrant cultural scene, including salsa music and dance, as well as its classic vintage cars that dot the streets."
+  },
+  {
+    name: "Cyprus",
+    flag: "https://flagcdn.com/w320/cy.png",
+    fact: "Cyprus is one of the oldest wine-producing regions in the world, with a history of winemaking dating back over 5,000 years."
+  },
+  {
+    name: "Czech Republic",
+    flag: "https://flagcdn.com/w320/cz.png",
+    fact: "The Czech Republic is famous for its medieval towns, castles, and the iconic Charles Bridge in Prague."
+  },
+  {
+    name: "Denmark",
+    flag: "https://flagcdn.com/w320/dk.png",
+    fact: "Denmark is home to the world's happiest people, consistently topping global happiness rankings."
+  },
+  {
+    name: "Djibouti",
+    flag: "https://flagcdn.com/w320/dj.png",
+    fact: "Djibouti is strategically located at the crossroads of major shipping routes, making it a key international port for trade."
+  },
+  {
+    name: "Dominica",
+    flag: "https://flagcdn.com/w320/dm.png",
+    fact: "Dominica is known as the 'Nature Island' for its pristine rainforests, waterfalls, and geothermal hot springs."
+  },
+  {
+    name: "Dominican Republic",
+    flag: "https://flagcdn.com/w320/do.png",
+    fact: "The Dominican Republic is home to the first European settlement in the Americas and has the oldest cathedral in the New World."
+  },
+  {
+    name: "Ecuador",
+    flag: "https://flagcdn.com/w320/ec.png",
+    fact: "Ecuador is home to the Galápagos Islands, where Charles Darwin formulated his theory of evolution by natural selection."
+  },
+  {
+    name: "Egypt",
+    flag: "https://flagcdn.com/w320/eg.png",
+    fact: "Egypt is home to the Pyramids of Giza, one of the Seven Wonders of the Ancient World, and a rich ancient civilization along the Nile River."
+  },
+  {
+    name: "El Salvador",
+    flag: "https://flagcdn.com/w320/sv.png",
+    fact: "El Salvador is the smallest country in Central America but has the most active volcanoes in the region, making it a hotspot for adventure tourism."
+  },
+  {
+    name: "Equatorial Guinea",
+    flag: "https://flagcdn.com/w320/gq.png",
+    fact: "Equatorial Guinea is the only country in Africa where Spanish is the official language, and it has an island with a unique biodiversity."
+  },
+  {
+    name: "Eritrea",
+    flag: "https://flagcdn.com/w320/er.png",
+    fact: "Eritrea is known for its rich history, from its ancient origins as part of the Aksumite Empire to its stunning Red Sea coastline."
+  },
+  {
+    name: "Estonia",
+    flag: "https://flagcdn.com/w320/ee.png",
+    fact: "Estonia is one of the most digitally advanced countries, offering e-residency and becoming the first to hold nationwide digital voting."
+  },
+  {
+    name: "Eswatini",
+    flag: "https://flagcdn.com/w320/sz.png",
+    fact: "Eswatini (formerly Swaziland) is one of the few remaining monarchies in Africa, with vibrant traditional ceremonies and festivals."
+  },
+  {
+    name: "Ethiopia",
+    flag: "https://flagcdn.com/w320/et.png",
+    fact: "Ethiopia is one of the oldest nations in the world, home to the famous rock-hewn churches of Lalibela and the historic city of Axum."
+  },
+  {
+    name: "Fiji",
+    flag: "https://flagcdn.com/w320/fj.png",
+    fact: "Fiji is an archipelago with over 300 islands, known for its crystal-clear waters, vibrant coral reefs, and welcoming culture."
+  },
+  {
+    name: "Finland",
+    flag: "https://flagcdn.com/w320/fi.png",
+    fact: "Finland is home to the Midnight Sun in the summer and is famous for its saunas and the 'Northern Lights' visible in the winter."
+  },
+  {
+    name: "France",
+    flag: "https://flagcdn.com/w320/fr.png",
+    fact: "France is not only the most visited country in the world but also famous for its wine, culinary tradition, art, and historical landmarks like the Eiffel Tower."
+  },
+  {
+    name: "Gabon",
+    flag: "https://flagcdn.com/w320/ga.png",
+    fact: "Gabon has one of the most biodiverse ecosystems in Africa, with a vast expanse of rainforests and diverse wildlife in its national parks."
+  },
+  {
+    name: "Gambia",
+    flag: "https://flagcdn.com/w320/gb.png",
+    fact: "The Gambia is the smallest country on the African mainland, and its history as a British colony is reflected in its culture and architecture."
+  },
+  {
+    name: "Georgia",
+    flag: "https://flagcdn.com/w320/ge.png",
+    fact: "Georgia is one of the oldest wine-producing countries in the world, with evidence of wine-making dating back over 8,000 years."
+  },
+  {
+    name: "Germany",
+    flag: "https://flagcdn.com/w320/de.png",
+    fact: "Germany is known for its contributions to science, philosophy, and engineering, as well as being home to Oktoberfest and the iconic Brandenburg Gate."
+  },
+  {
+    name: "Ghana",
+    flag: "https://flagcdn.com/w320/gh.png",
+    fact: "Ghana was the first African country to gain independence from colonial rule, and it has a rich cultural heritage influenced by numerous ethnic groups."
+  },
+  {
+    name: "Greece",
+    flag: "https://flagcdn.com/w320/gr.png",
+    fact: "Greece is considered the cradle of Western civilization, with ancient monuments like the Parthenon and a legacy of philosophy, democracy, and art."
+  },
+  {
+    name: "Grenada",
+    flag: "https://flagcdn.com/w320/gd.png",
+    fact: "Grenada is known as the 'Spice Isle' for its production of nutmeg, cloves, and cinnamon, which are key exports of the island."
+  },
+  {
+    name: "Guatemala",
+    flag: "https://flagcdn.com/w320/gt.png",
+    fact: "Guatemala is home to the ancient Mayan city of Tikal, which boasts impressive pyramids and ruins hidden deep in the rainforest."
+  },
+  {
+    name: "Guinea",
+    flag: "https://flagcdn.com/w320/gn.png",
+    fact: "Guinea is known for its rich natural resources, especially bauxite, from which aluminum is made, and for the Fouta Djallon highlands."
+  },
+  {
+    name: "Guinea-Bissau",
+    flag: "https://flagcdn.com/w320/gw.png",
+    fact: "Guinea-Bissau is famous for its diverse culture, including a blend of African and Portuguese influences, and its vibrant music scene."
+  },
+  {
+    name: "Guyana",
+    flag: "https://flagcdn.com/w320/gy.png",
+    fact: "Guyana is home to the Kaieteur Falls, one of the tallest and most powerful waterfalls in the world."
+  },
+  {
+    name: "Haiti",
+    flag: "https://flagcdn.com/w320/ht.png",
+    fact: "Haiti was the first country in the world to abolish slavery and establish a republic led by former slaves."
+  },
+  {
+    name: "Honduras",
+    flag: "https://flagcdn.com/w320/hn.png",
+    fact: "Honduras is known for its Mayan ruins at Copán, one of the most important archaeological sites of the ancient Maya civilization."
+  },
+  {
+    name: "Hungary",
+    flag: "https://flagcdn.com/w320/hu.png",
+    fact: "Hungary is known for its unique language, rich cultural heritage, and landmarks like the Buda Castle and the thermal baths of Budapest."
+  },
+  {
+    name: "Iceland",
+    flag: "https://flagcdn.com/w320/is.png",
+    fact: "Iceland is famous for its dramatic landscapes, including glaciers, volcanoes, geysers, and hot springs, and is one of the best places to see the Northern Lights."
+  },
+  {
+    name: "India",
+    flag: "https://flagcdn.com/w320/in.png",
+    fact: "India is the birthplace of major world religions such as Hinduism, Buddhism, Jainism, and Sikhism, and is known for its rich cultural diversity."
+  },
+  {
+    name: "Indonesia",
+    flag: "https://flagcdn.com/w320/id.png",
+    fact: "Indonesia is the world's largest archipelago, with over 17,000 islands, and is home to diverse wildlife such as orangutans and tigers."
+  },
+  {
+    name: "Iran",
+    flag: "https://flagcdn.com/w320/ir.png",
+    fact: "Iran boasts a rich history, home to ancient civilizations like the Persians, and features iconic sites such as Persepolis and Isfahan's beautiful mosques."
+  },
+  {
+    name: "Iraq",
+    flag: "https://flagcdn.com/w320/iq.png",
+    fact: "Iraq is considered the cradle of civilization, with ancient Mesopotamian cities like Babylon and Ur shaping the development of writing and law."
+  },
+  {
+    name: "Ireland",
+    flag: "https://flagcdn.com/w320/ie.png",
+    fact: "Ireland is known for its lush landscapes, historical castles, and as the birthplace of famous writers like James Joyce and W.B. Yeats."
+  },
+  {
+    name: "Israel",
+    flag: "https://flagcdn.com/w320/il.png",
+    fact: "Israel is a historically and religiously significant country, home to sacred sites like Jerusalem's Western Wall and the Dead Sea."
+  },
+  {
+    name: "Italy",
+    flag: "https://flagcdn.com/w320/it.png",
+    fact: "Italy is renowned for its art, architecture, and cuisine, with iconic landmarks such as the Colosseum, the Leaning Tower of Pisa, and Venice's canals."
+  },
+  {
+    name: "Jamaica",
+    flag: "https://flagcdn.com/w320/jm.png",
+    fact: "Jamaica is known for its vibrant music scene, especially reggae, and as the birthplace of legendary musician Bob Marley."
+  },
+  {
+    name: "Japan",
+    flag: "https://flagcdn.com/w320/jp.png",
+    fact: "Japan is famous for its technological innovations, unique blend of ancient traditions and modern culture, and stunning landmarks like Mount Fuji."
+  },
+  {
+    name: "Jordan",
+    flag: "https://flagcdn.com/w320/jo.png",
+    fact: "Jordan is home to Petra, an ancient city carved into rose-red sandstone cliffs, and the lowest point on Earth, the Dead Sea."
+  },
+  {
+    name: "Kazakhstan",
+    flag: "https://flagcdn.com/w320/kz.png",
+    fact: "Kazakhstan is the largest landlocked country in the world, and it is known for its vast steppes, mountains, and rich mineral resources."
+  },
+  {
+    name: "Kenya",
+    flag: "https://flagcdn.com/w320/ke.png",
+    fact: "Kenya is renowned for its wildlife, including the 'Big Five' (lion, leopard, elephant, rhino, and buffalo), and its rich cultural heritage."
+  },
+  {
+    name: "Kiribati",
+    flag: "https://flagcdn.com/w320/ki.png",
+    fact: "Kiribati is a Pacific island nation known for its stunning coral atolls and being one of the most vulnerable countries to climate change."
+  },
+  {
+    name: "Korea, North",
+    flag: "https://flagcdn.com/w320/kp.png",
+    fact: "North Korea is one of the most secretive and isolated countries in the world, with a strong emphasis on military power and self-reliance."
+  },
+  {
+    name: "Korea, South",
+    flag: "https://flagcdn.com/w320/kr.png",
+    fact: "South Korea is known for its rapid economic development, technological innovations, and cultural exports like K-pop and Korean dramas."
+  },
+  {
+    name: "Kuwait",
+    flag: "https://flagcdn.com/w320/kw.png",
+    fact: "Kuwait has one of the highest per capita incomes in the world and is known for its wealth derived from oil and its modern architecture."
+  },
+  {
+    name: "Kyrgyzstan",
+    flag: "https://flagcdn.com/w320/kg.png",
+    fact: "Kyrgyzstan is a mountainous country, known for its breathtaking landscapes, including the Tien Shan mountain range and Issyk-Kul Lake."
+  },
+  {
+    name: "Laos",
+    flag: "https://flagcdn.com/w320/la.png",
+    fact: "Laos is one of the few landlocked countries in Southeast Asia and is famous for its Buddhist temples and the Mekong River that flows through the country."
+  },
+  {
+    name: "Latvia",
+    flag: "https://flagcdn.com/w320/lv.png",
+    fact: "Latvia is known for its rich cultural traditions, lush forests, and a high quality of life, with Riga being a hub for art and architecture."
+  },
+  {
+    name: "Lebanon",
+    flag: "https://flagcdn.com/w320/lb.png",
+    fact: "Lebanon is a country with a rich history, known for its ancient ruins like those of Byblos, Baalbek, and the vibrant Mediterranean city of Beirut."
+  },
+  {
+    name: "Lesotho",
+    flag: "https://flagcdn.com/w320/ls.png",
+    fact: "Lesotho is a small, landlocked country entirely surrounded by South Africa, famous for its mountainous landscapes and rich cultural traditions."
+  },
+  {
+    name: "Liberia",
+    flag: "https://flagcdn.com/w320/lr.png",
+    fact: "Liberia was founded by freed American slaves in the 19th century and is the first republic in Africa."
+  },
+  {
+    name: "Libya",
+    flag: "https://flagcdn.com/w320/ly.png",
+    fact: "Libya is known for its vast deserts, ancient ruins like the Roman city of Sabratha, and its oil wealth."
+  },
+  {
+    name: "Liechtenstein",
+    flag: "https://flagcdn.com/w320/li.png",
+    fact: "Liechtenstein is a tiny, landlocked country nestled in the Alps, known for its strong financial sector and being one of the world's richest countries."
+  },
+  {
+    name: "Lithuania",
+    flag: "https://flagcdn.com/w320/lt.png",
+    fact: "Lithuania is one of the Baltic States, known for its medieval history, rich traditions, and landmarks such as the Vilnius Old Town."
+  },
+  {
+    name: "Luxembourg",
+    flag: "https://flagcdn.com/w320/lu.png",
+    fact: "Luxembourg is one of the wealthiest countries in the world and is known for its strong banking sector, historic castles, and multilingual population."
+  },
+  {
+    name: "Madagascar",
+    flag: "https://flagcdn.com/w320/mg.png",
+    fact: "Madagascar is an island nation with unique wildlife, including lemurs and chameleons, and features diverse ecosystems like rainforests and deserts."
+  },
+  {
+    name: "Malawi",
+    flag: "https://flagcdn.com/w320/mw.png",
+    fact: "Malawi is home to Lake Malawi, one of the largest freshwater lakes in Africa, and boasts an abundance of fish species."
+  },
+  {
+    name: "Malaysia",
+    flag: "https://flagcdn.com/w320/my.png",
+    fact: "Malaysia is famous for its stunning beaches, rainforests, and a melting pot of cultures influenced by Malay, Chinese, and Indian heritage."
+  },
+  {
+    name: "Maldives",
+    flag: "https://flagcdn.com/w320/mv.png",
+    fact: "The Maldives is a tropical paradise known for its crystal-clear waters, luxury resorts, and vibrant marine life, including coral reefs and tropical fish."
+  },
+  {
+    name: "Mali",
+    flag: "https://flagcdn.com/w320/ml.png",
+    fact: "Mali is home to the ancient city of Timbuktu, once a major center of trade and scholarship in West Africa."
+  },
+  {
+    name: "Malta",
+    flag: "https://flagcdn.com/w320/mt.png",
+    fact: "Malta is a small island nation in the Mediterranean, known for its rich history, including Roman, Moorish, and medieval influences."
+  },
+  {
+    name: "Marshall Islands",
+    flag: "https://flagcdn.com/w320/mh.png",
+    fact: "The Marshall Islands is a Pacific island nation with stunning coral reefs and a history linked to World War II and nuclear testing."
+  },
+  {
+    name: "Mauritania",
+    flag: "https://flagcdn.com/w320/mr.png",
+    fact: "Mauritania is known for its vast deserts and rich Islamic culture, as well as the historic city of Chinguetti, a former center of learning."
+  },
+  {
+    name: "Mauritius",
+    flag: "https://flagcdn.com/w320/mu.png",
+    fact: "Mauritius is an island nation known for its pristine beaches, diverse cultures, and as the home of the now-extinct dodo bird."
+  },
+  {
+    name: "Mexico",
+    flag: "https://flagcdn.com/w320/mx.png",
+    fact: "Mexico is known for its ancient civilizations, including the Aztecs and Maya, as well as its vibrant culture, delicious cuisine, and beautiful beaches."
+  },
+  {
+    name: "Micronesia",
+    flag: "https://flagcdn.com/w320/fm.png",
+    fact: "Micronesia is an island nation in the Pacific Ocean, known for its stunning coral reefs, unique culture, and traditional navigation techniques."
+  },
+  {
+    name: "Moldova",
+    flag: "https://flagcdn.com/w320/md.png",
+    fact: "Moldova is a small, landlocked country in Eastern Europe, famous for its wine production, particularly in the Cricova wine cellars."
+  },
+  {
+    name: "Monaco",
+    flag: "https://flagcdn.com/w320/mc.png",
+    fact: "Monaco is a small, wealthy city-state on the Mediterranean, known for its luxury casinos, Formula 1 Grand Prix, and as a tax haven."
+  },
+  {
+    name: "Mongolia",
+    flag: "https://flagcdn.com/w320/mn.png",
+    fact: "Mongolia is a vast, landlocked country known for its steppes, nomadic culture, and being the homeland of Genghis Khan."
+  },
+  {
+    name: "Montenegro",
+    flag: "https://flagcdn.com/w320/me.png",
+    fact: "Montenegro is known for its stunning Adriatic coastline, medieval towns, and the rugged beauty of its national parks and mountains."
+  },
+  {
+    name: "Morocco",
+    flag: "https://flagcdn.com/w320/ma.png",
+    fact: "Morocco is famous for its vibrant markets (souks), the Atlas Mountains, and the Sahara Desert, and its blend of Arab, Berber, and French cultures."
+  },
+  {
+    name: "Mozambique",
+    flag: "https://flagcdn.com/w320/mz.png",
+    fact: "Mozambique is known for its beautiful beaches along the Indian Ocean, as well as its diverse wildlife and rich cultural heritage."
+  },
+  {
+    name: "Myanmar",
+    flag: "https://flagcdn.com/w320/mm.png",
+    fact: "Myanmar, formerly known as Burma, is home to thousands of Buddhist temples, including the famous Bagan temples, and a rich cultural history."
+  },
+  {
+    name: "Namibia",
+    flag: "https://flagcdn.com/w320/na.png",
+    fact: "Namibia is known for its vast deserts, particularly the Namib Desert, and its stunning wildlife, including elephants, lions, and rhinos."
+  },
+  {
+    name: "Nauru",
+    flag: "https://flagcdn.com/w320/nr.png",
+    fact: "Nauru is the third smallest country in the world by land area and is known for its phosphate mining industry."
+  },
+  {
+    name: "Nepal",
+    flag: "https://flagcdn.com/w320/np.png",
+    fact: "Nepal is the birthplace of Buddha and is famous for the Himalayas, including Mount Everest, the highest point on Earth."
+  },
+  {
+    name: "Netherlands",
+    flag: "https://flagcdn.com/w320/nl.png",
+    fact: "The Netherlands is known for its windmills, tulips, and canals, as well as being a global leader in water management and sustainable energy."
+   },
+   {
+     name: "New Zealand",
+     flag: "https://flagcdn.com/w320/nz.png",
+     fact: "New Zealand is famous for its stunning landscapes, ranging from beaches to mountains, and is known as the filming location for the 'Lord of the Rings' trilogy."
+   },
+   {
+     name: "Nicaragua",
+     flag: "https://flagcdn.com/w320/ni.png",
+     fact: "Nicaragua is home to the world's largest volcanic lake, Lake Cocibolca, and boasts an array of natural beauty, including rainforests, mountains, and pristine beaches."
+   },
+   {
+     name: "Niger",
+     flag: "https://flagcdn.com/w320/ne.png",
+     fact: "Niger is known for its vast desert landscapes, particularly the Sahara Desert, and is one of the world's poorest yet historically rich nations with ancient trade routes."
+   },
+   {
+     name: "Nigeria",
+     flag: "https://flagcdn.com/w320/ng.png",
+     fact: "Nigeria is Africa's most populous country and is known for its rich cultural diversity, including over 500 ethnic groups and its vibrant music scene, especially Afrobeat."
+   },
+   {
+     name: "North Macedonia",
+     flag: "https://flagcdn.com/w320/mk.png",
+     fact: "North Macedonia is known for its beautiful lakes, particularly Lake Ohrid, one of Europe's oldest and deepest lakes, and for its rich cultural and historical heritage."
+   },
+   {
+     name: "Norway",
+     flag: "https://flagcdn.com/w320/no.png",
+     fact: "Norway is renowned for its breathtaking fjords, the midnight sun in the summer, and its high quality of life, regularly ranking among the happiest countries in the world."
+   },
+   {
+     name: "Oman",
+     flag: "https://flagcdn.com/w320/om.png",
+     fact: "Oman is known for its stunning deserts, mountains, and beaches, as well as its rich history and culture, dating back to ancient trade routes and maritime influence."
+   },
+   {
+     name: "Pakistan",
+     flag: "https://flagcdn.com/w320/pk.png",
+     fact: "Pakistan is home to some of the highest mountains in the world, including K2, the second-highest peak, and boasts a rich cultural heritage with a variety of languages and traditions."
+   },
+   {
+     name: "Palau",
+     flag: "https://flagcdn.com/w320/pw.png",
+     fact: "Palau is a Pacific island nation known for its pristine coral reefs, crystal-clear waters, and rich marine biodiversity, making it a popular destination for diving."
+   },
+   {
+     name: "Panama",
+     flag: "https://flagcdn.com/w320/pa.png",
+     fact: "Panama is best known for the Panama Canal, a critical waterway connecting the Atlantic and Pacific Oceans, and is also home to a rich biodiversity of wildlife and rainforests."
+   },
+   {
+     name: "Papua New Guinea",
+     flag: "https://flagcdn.com/w320/pg.png",
+     fact: "Papua New Guinea is renowned for its diverse cultures and languages, with over 800 languages spoken, making it one of the most linguistically diverse places on Earth."
+   },
+   {
+     name: "Paraguay",
+     flag: "https://flagcdn.com/w320/py.png",
+     fact: "Paraguay is a landlocked country known for its indigenous cultures, unique guarani language, and its vast, unexplored wetlands and rivers, including the Pantanal."
+   },
+   {
+      name: "Paraguay",
+      flag: "https://flagcdn.com/w320/py.png",
+      fact: "Paraguay is a landlocked country with a unique dual language system: both Spanish and Guarani are official languages. It's also home to the Itaipú Dam, one of the largest hydroelectric power stations in the world."
+    },
+    {
+      name: "Peru",
+      flag: "https://flagcdn.com/w320/pe.png",
+      fact: "Peru is the birthplace of the ancient Inca civilization and home to the mystical Machu Picchu. It also boasts one of the world’s largest rainforests, the Amazon, and a vibrant culinary scene known for dishes like ceviche and pisco sour."
+    },
+    {
+      name: "Philippines",
+      flag: "https://flagcdn.com/w320/ph.png",
+      fact: "The Philippines is made up of over 7,600 islands, many of which are uninhabited and surrounded by some of the most beautiful beaches in the world. It’s also home to the world’s longest underground river and the famous Taal Volcano."
+    },
+    {
+      name: "Poland",
+      flag: "https://flagcdn.com/w320/pl.png",
+      fact: "Poland has a rich history, from medieval castles to the birthplace of the famous composer Chopin. The Białowieża Forest, one of Europe’s last primeval forests, is home to Europe’s largest population of European bison."
+    },
+    {
+      name: "Portugal",
+      flag: "https://flagcdn.com/w320/pt.png",
+      fact: "Portugal is famous for its world-renowned wines, especially Port and Vinho Verde. The country is also home to the stunning Algarve coast and historic cities like Lisbon, with its iconic tram rides and beautiful azulejos (tiles)."
+    },
+    {
+      name: "Qatar",
+      flag: "https://flagcdn.com/w320/qa.png",
+      fact: "Qatar is one of the richest countries in the world, with wealth generated from vast oil and gas reserves. It's also a country of extreme contrasts, from its ultra-modern skyline in Doha to the ancient desert landscapes of the Empty Quarter."
+    },
+    {
+      name: "Romania",
+      flag: "https://flagcdn.com/w320/ro.png",
+      fact: "Romania is the land of Dracula, with Bran Castle often linked to the Dracula legend. The Carpathian Mountains are teeming with wildlife, including bears and wolves, and the country has one of Europe’s most well-preserved medieval regions."
+    },
+    {
+      name: "Russia",
+      flag: "https://flagcdn.com/w320/ru.png",
+      fact: "Russia is the largest country on Earth, spanning across two continents and 11 time zones. It is also home to Lake Baikal, the world’s deepest and oldest freshwater lake, and the majestic Trans-Siberian Railway, the longest train route in the world."
+    },
+    {
+      name: "Rwanda",
+      flag: "https://flagcdn.com/w320/rw.png",
+      fact: "Rwanda is often referred to as the 'Land of a Thousand Hills' due to its mountainous terrain. It is also a haven for wildlife enthusiasts, offering the rare opportunity to track mountain gorillas in Volcanoes National Park."
+    },
+    {
+      name: "Saint Kitts and Nevis",
+      flag: "https://flagcdn.com/w320/kn.png",
+      fact: "Saint Kitts and Nevis is the smallest independent country in the Western Hemisphere. The island is famous for its lush rainforests, volcanic mountains, and the historical Brimstone Hill Fortress, a UNESCO World Heritage site."
+    },
+    {
+      name: "Saint Lucia",
+      flag: "https://flagcdn.com/w320/lc.png",
+      fact: "Saint Lucia is a Caribbean paradise known for its dramatic twin peaks, the Pitons, and its volcanic beaches. It also offers some of the world’s best diving and is famous for its vibrant culture, including the annual Saint Lucia Jazz Festival."
+    },
+    {
+      name: "Saint Vincent and the Grenadines",
+      flag: "https://flagcdn.com/w320/vc.png",
+      fact: "Saint Vincent and the Grenadines is an archipelago with over 30 islands, known for its crystal-clear waters, coral reefs, and as the backdrop for the popular movie *Pirates of the Caribbean*. It’s also a favorite among sailors and yacht lovers."
+    },
+    {
+      name: "Samoa",
+      flag: "https://flagcdn.com/w320/ws.png",
+      fact: "Samoa is a beautiful Polynesian island nation known for its rich cultural heritage and traditional tattooing. It was the first country to welcome the new millennium, as it was the first in the world to experience the year 2000."
+    },
+    {
+      name: "San Marino",
+      flag: "https://flagcdn.com/w320/sm.png",
+      fact: "San Marino is one of the world’s oldest republics, founded in 301 AD. Perched atop Mount Titano, it is also famous for its medieval architecture and stunning views of the surrounding Italian countryside."
+    },
+    {
+      name: "Sao Tome and Principe",
+      flag: "https://flagcdn.com/w320/st.png",
+      fact: "São Tomé and Príncipe is a lush tropical island nation located near the equator, known for its cocoa plantations and unique biodiversity, including the world's largest bird colony on the island of Príncipe."
+    },
+    {
+      name: "Saudi Arabia",
+      flag: "https://flagcdn.com/w320/sa.png",
+      fact: "Saudi Arabia is home to the birthplace of Islam, with the holy cities of Mecca and Medina drawing millions of pilgrims annually. It also boasts vast deserts like the Rub' al Khali, or 'Empty Quarter', the largest continuous sand desert in the world."
+    },
+    {
+      name: "Senegal",
+      flag: "https://flagcdn.com/w320/sn.png",
+      fact: "Senegal is famous for its vibrant music scene, especially the genre of mbalax, and its rich cultural diversity. The island of Gorée, off the coast of Dakar, was one of the key centers of the transatlantic slave trade."
+    },
+    {
+      name: "Serbia",
+      flag: "https://flagcdn.com/w320/rs.png",
+      fact: "Serbia is home to some of Europe's most beautiful and historic monasteries, many of which are UNESCO World Heritage sites. It’s also known for its vibrant festivals and hearty cuisine, especially its delicious rakija (fruit brandy)."
+    },
+    {
+      name: "Seychelles",
+      flag: "https://flagcdn.com/w320/sc.png",
+      fact: "Seychelles is an island paradise in the Indian Ocean, with over 100 islands, pristine beaches, and unique wildlife, including giant tortoises and the famous Coco de Mer palms."
+    },
+    {
+      name: "Sierra Leone",
+      flag: "https://flagcdn.com/w320/sl.png",
+      fact: "Sierra Leone is known for its stunning beaches along the Atlantic Ocean, its vibrant culture, and being the site of one of Africa's oldest and most influential trading ports during the transatlantic slave trade."
+    },
+    {
+      name: "Singapore",
+      flag: "https://flagcdn.com/w320/sg.png",
+      fact: "Singapore is a global financial hub famous for its iconic skyline, green spaces like Gardens by the Bay, and diverse street food scene, where dishes like laksa and chili crab are national treasures."
+    },
+    {
+      name: "Slovakia",
+      flag: "https://flagcdn.com/w320/sk.png",
+      fact: "Slovakia is known for its stunning castles, including the magnificent Bratislava Castle, and is a haven for nature lovers, offering hiking and skiing opportunities in the Tatra Mountains."
+    },
+    {
+      name: "Slovenia",
+      flag: "https://flagcdn.com/w320/si.png",
+      fact: "Slovenia is a small country packed with natural beauty, from its enchanting Lake Bled to the Škocjan Caves, a UNESCO World Heritage site. It’s also the first country to be declared a green destination by the Global Green Destinations Standard."
+    },
+    {
+      name: "Solomon Islands",
+      flag: "https://flagcdn.com/w320/sb.png",
+      fact: "The Solomon Islands is an archipelago in the Pacific Ocean, known for its WWII history, including the Battle of Guadalcanal, and is a premier diving destination with vibrant coral reefs."
+    },
+    {
+      name: "Somalia",
+      flag: "https://flagcdn.com/w320/so.png",
+      fact: "Somalia boasts the longest coastline in mainland Africa and has a rich maritime heritage, with ancient port cities like Mogadishu and Berbera that have traded for thousands of years."
+    },
+    {
+        name: "South Africa",
+        flag: "https://flagcdn.com/w320/za.png",
+        fact: "South Africa is a land of contrasts, from the vibrant city of Cape Town and its iconic Table Mountain to the vast Kruger National Park, home to the Big Five. It is also the birthplace of Nelson Mandela and the end of apartheid."
+      },
+      {
+        name: "South Sudan",
+        flag: "https://flagcdn.com/w320/ss.png",
+        fact: "South Sudan became the world's youngest country in 2011. It is known for its vast savannas, the White Nile River, and diverse ethnic groups with rich traditions and languages."
+      },
+      {
+        name: "Spain",
+        flag: "https://flagcdn.com/w320/es.png",
+        fact: "Spain is famous for its passionate culture, from flamenco dancing to the exhilarating running of the bulls in Pamplona. It's also home to iconic landmarks like the Alhambra and Sagrada Familia, and a diverse range of culinary delights."
+      },
+      {
+        name: "Sri Lanka",
+        flag: "https://flagcdn.com/w320/lk.png",
+        fact: "Sri Lanka is an island nation known for its pristine beaches, ancient Buddhist temples, and world-renowned tea plantations. It’s also home to the iconic Sigiriya rock fortress, one of the best-preserved examples of ancient urban planning."
+      },
+      {
+        name: "Sudan",
+        flag: "https://flagcdn.com/w320/sd.png",
+        fact: "Sudan is a land of ancient history, home to the Nubian pyramids, which predate those of Egypt. The country also boasts diverse landscapes, from the Sahara Desert to the lush Nile Valley."
+      },
+      {
+        name: "Suriname",
+        flag: "https://flagcdn.com/w320/sr.png",
+        fact: "Suriname is the smallest country in South America and is known for its diverse population, which includes indigenous groups, Afro-descendants, and a large number of ethnic groups. Its rainforests are a haven for wildlife and offer eco-tourism opportunities."
+      },
+      {
+        name: "Sweden",
+        flag: "https://flagcdn.com/w320/se.png",
+        fact: "Sweden is famous for its stunning natural beauty, from the Northern Lights to its pristine archipelagos. It is also a world leader in design, technology, and social welfare, and the home of the iconic IKEA."
+      },
+      {
+        name: "Switzerland",
+        flag: "https://flagcdn.com/w320/ch.png",
+        fact: "Switzerland is known for its stunning alpine scenery, making it a haven for skiers and hikers. It's also famous for its precision watches, delicious chocolates, and being home to international organizations such as the Red Cross and the United Nations."
+      },
+      {
+        name: "Syria",
+        flag: "https://flagcdn.com/w320/sy.png",
+        fact: "Syria is home to some of the world’s oldest cities, including Damascus, which is considered one of the oldest continuously inhabited cities in the world. The country has a rich history, with ancient ruins like Palmyra and vibrant cultural traditions."
+      },
+      {
+        name: "Taiwan",
+        flag: "https://flagcdn.com/w320/tw.png",
+        fact: "Taiwan is known for its stunning natural landscapes, including hot springs, mountains, and beaches. It's also a global leader in technology, especially in semiconductor manufacturing, and has a vibrant food scene, particularly for bubble tea and night markets."
+      },
+      {
+        name: "Tajikistan",
+        flag: "https://flagcdn.com/w320/tj.png",
+        fact: "Tajikistan is a mountainous Central Asian country, home to the Pamir Mountains, often referred to as the 'Roof of the World.' It's known for its stunning alpine lakes, ancient silk road heritage, and rich Persian culture."
+      },
+      {
+        name: "Tanzania",
+        flag: "https://flagcdn.com/w320/tz.png",
+        fact: "Tanzania is home to some of Africa’s most iconic wildlife, including the Serengeti, known for its annual migration of millions of wildebeests, and Mount Kilimanjaro, Africa’s highest peak. Zanzibar, part of Tanzania, is famous for its spice plantations and white-sand beaches."
+      },
+      {
+        name: "Thailand",
+        flag: "https://flagcdn.com/w320/th.png",
+        fact: "Thailand is known for its golden temples, stunning beaches, and rich cultural traditions. It’s also famous for its delicious cuisine, including spicy curries, pad Thai, and its vibrant street food scene."
+      },
+      {
+        name: "Timor-Leste",
+        flag: "https://flagcdn.com/w320/tl.png",
+        fact: "Timor-Leste, one of the youngest countries in the world, offers pristine beaches, beautiful coral reefs, and a rich mix of indigenous cultures. It’s a hidden gem for eco-tourism and adventure travel in Southeast Asia."
+      },
+      {
+        name: "Togo",
+        flag: "https://flagcdn.com/w320/tg.png",
+        fact: "Togo, located in West Africa, is known for its vibrant culture, including the traditional dances and music of the Ewe people. It also has a rich colonial history and stunning landscapes ranging from beaches to savannahs."
+      },
+      {
+        name: "Tonga",
+        flag: "https://flagcdn.com/w320/to.png",
+        fact: "Tonga is the only monarchy in the Pacific, famous for its pristine beaches, coral reefs, and whale watching. The country is also known for its royal traditions and for being one of the few places where you can swim with humpback whales."
+      },
+      {
+        name: "Trinidad and Tobago",
+        flag: "https://flagcdn.com/w320/tt.png",
+        fact: "Trinidad and Tobago is the birthplace of calypso and soca music and is famous for its lively Carnival celebrations. The country is also home to one of the largest asphalt lakes in the world and a unique array of wildlife."
+      },
+      {
+        name: "Tunisia",
+        flag: "https://flagcdn.com/w320/tn.png",
+        fact: "Tunisia is known for its Mediterranean beaches, ancient ruins like Carthage, and rich Islamic heritage. It also served as the backdrop for the original *Star Wars* film, with its desert landscapes featured as Tatooine."
+      },
+      {
+        name: "Turkey",
+        flag: "https://flagcdn.com/w320/tr.png",
+        fact: "Turkey is a country where East meets West, blending European and Asian cultures. It’s famous for its stunning landmarks like the Hagia Sophia, the ancient city of Ephesus, and the surreal landscapes of Cappadocia with its fairy chimneys."
+      },
+      {
+        name: "Turkmenistan",
+        flag: "https://flagcdn.com/w320/tm.png",
+        fact: "Turkmenistan is home to the Gate of Hell, a fiery gas crater that has been burning for decades. The country also boasts a rich Silk Road history, vast deserts, and impressive ancient ruins like Merv."
+      },
+      {
+        name: "Tuvalu",
+        flag: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/Flag_of_Tuvalu.svg/800px-Flag_of_Tuvalu.svg.png",
+        fact: "Tuvalu is one of the smallest and most remote countries in the world, made up of nine tiny islands in the Pacific Ocean. Its coral atolls and lagoons are pristine and have become a symbol of the dangers of climate change."
+      },
+      {
+        name: "Uganda",
+        flag: "https://flagcdn.com/w320/ug.png",
+        fact: "Uganda is home to the endangered mountain gorillas of Bwindi Impenetrable Forest, as well as the source of the Nile River. The country offers some of Africa’s most diverse wildlife and stunning landscapes."
+      },
+      {
+        name: "Ukraine",
+        flag: "https://flagcdn.com/w320/ua.png",
+        fact: "Ukraine is the second-largest country in Europe and is known for its rich history, including its medieval castles, beautiful landscapes, and its iconic borscht soup. Kyiv, the capital, is one of Europe's oldest cities."
+      },
+      {
+        name: "United Arab Emirates",
+        flag: "https://flagcdn.com/w320/ae.png",
+        fact: "The UAE is known for its futuristic cities like Dubai and Abu Dhabi, home to the Burj Khalifa, the world's tallest building. The country is also famous for its opulent shopping malls, luxurious hotels, and artificial islands like Palm Jumeirah."
+      },
+      {
+          name: "United Arab Emirates",
+          flag: "https://flagcdn.com/w320/ae.png",
+          fact: "The UAE is known for its futuristic cities like Dubai and Abu Dhabi, home to the Burj Khalifa, the world's tallest building. The country is also famous for its opulent shopping malls, luxurious hotels, and artificial islands like Palm Jumeirah."
+        },
+        {
+          name: "United Kingdom",
+          flag: "https://flagcdn.com/w320/gb.png",
+          fact: "The United Kingdom is known for its rich history, from the British Empire to its monarchy, with iconic landmarks like Big Ben and Buckingham Palace. It’s also famous for its contributions to literature, science, and music, with figures like Shakespeare and The Beatles."
+        },
+        {
+          name: "Uruguay",
+          flag: "https://flagcdn.com/w320/uy.png",
+          fact: "Uruguay is the first country in the world to legalize the production, sale, and consumption of marijuana. It’s also known for its beautiful beaches, historic old town of Colonia del Sacramento, and passionate football culture."
+        },
+        {
+          name: "Uzbekistan",
+          flag: "https://flagcdn.com/w320/uz.png",
+          fact: "Uzbekistan is a land of ancient Silk Road cities like Samarkand and Bukhara, famous for their stunning Islamic architecture, colorful bazaars, and rich history. The country is also a major producer of cotton and is home to the world's largest open-pit gold mine."
+        },
+        {
+          name: "Vanuatu",
+          flag: "https://flagcdn.com/w320/vu.png",
+          fact: "Vanuatu is a volcanic archipelago in the South Pacific, famous for its active volcanoes, pristine coral reefs, and unique Melanesian culture. It’s also home to one of the happiest populations in the world, according to global happiness rankings."
+        },
+        {
+          name: "Vatican City",
+          flag: "https://flagcdn.com/w320/va.png",
+          fact: "Vatican City is the smallest country in the world, both in terms of size and population. It’s the spiritual and administrative center of the Roman Catholic Church, home to the Pope, and contains world-famous treasures like St. Peter’s Basilica and the Sistine Chapel."
+        },
+        {
+          name: "Venezuela",
+          flag: "https://flagcdn.com/w320/ve.png",
+          fact: "Venezuela is home to Angel Falls, the world's highest uninterrupted waterfall. The country is also known for its rich oil reserves, beautiful Caribbean coastline, and vibrant cultural heritage, including salsa and merengue music."
+        },
+        {
+          name: "Vietnam",
+          flag: "https://flagcdn.com/w320/vn.png",
+          fact: "Vietnam is known for its stunning landscapes, from the limestone karsts of Ha Long Bay to the lush Mekong Delta. It’s also famous for its unique cuisine, including pho, banh mi, and fresh spring rolls, and its long and tumultuous history."
+        },
+        {
+          name: "Yemen",
+          flag: "https://flagcdn.com/w320/ye.png",
+          fact: "Yemen is a country of ancient history, with incredible archaeological sites like the mud-brick skyscrapers of Shibam and the UNESCO World Heritage city of Sana’a. The country is also known for its unique coffee, considered some of the best in the world."
+        },
+        {
+          name: "Zambia",
+          flag: "https://flagcdn.com/w320/zm.png",
+          fact: "Zambia is home to one of the seven natural wonders of the world, Victoria Falls, and is known for its stunning wildlife, including elephants, lions, and hippos in the South Luangwa National Park. The country has one of Africa’s highest concentrations of wildlife."
+        },
+        {
+          name: "Zimbabwe",
+          flag: "https://flagcdn.com/w320/zw.png",
+          fact: "Zimbabwe is known for its iconic ancient ruins, including the Great Zimbabwe National Monument, and the majestic Victoria Falls, which it shares with Zambia. The country is also a top destination for safari lovers, home to Hwange National Park and a variety of wildlife."
+        }
+      ];
+        const countryFactsContainer = document.getElementById("country-facts");
+        const searchBox = document.getElementById("search-box");
+        // Dynamically populate country data
+        countries.forEach(country => {
+            const countryDiv = document.createElement("div");
+            countryDiv.className = "country";
+            countryDiv.innerHTML = `
+                <img src="${country.flag}" alt="${country.name} Flag" class="flag">
+                <div class="info">
+                    <h2>${country.name}</h2>
+                    <p>Did you know? ${country.fact}</p>
+                </div>
+            `;
+            countryFactsContainer.appendChild(countryDiv);
+        });
+        function renderCountries(countriesToRender) {
+            countryFactsContainer.innerHTML = '';
+            countriesToRender.forEach(country => {
+                const countryDiv = document.createElement("div");
+                countryDiv.className = "country";
+                countryDiv.innerHTML = `
+                    <img src="${country.flag}" alt="${country.name} Flag" class="flag">
+                    <div class="info">
+                        <h2>${country.name}</h2>
+                        <p>Did you know? ${country.fact}</p>
+                    </div>
+                `;
+                countryFactsContainer.appendChild(countryDiv);
+            });
+        }
+
+        function filterCountries() {
+            const query = searchBox.value.toLowerCase();
+            const filteredCountries = countries.filter(country => country.name.toLowerCase().includes(query));
+            renderCountries(filteredCountries);
+        }
+
+        searchBox.addEventListener("input", filterCountries);
+
+        // Initially render all countries
+        renderCountries(countries);
+    </script>
+</body>
+</html>
